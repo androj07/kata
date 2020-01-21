@@ -11,41 +11,26 @@ package com.androj.kata.messagedecoding;
  */
 public class MessageDecoding {
 
-    private final static int WINDOW_SIZE = 2;
-    public int possibleDecodings(String message) {
-        //You can assume that the messages are decodable. For example, '001' is not allowed.
-        if (message.isEmpty()) {
-            return 0;
-        }
 
-        if (message.length() == 1) {
+    public int possibleDecodings(String message) {
+        if (message.length() < 2) {
             return 1;
         }
-
-        //count doubles
-        int decodablePairs = 0;
-        int undecodablePairs = 0;
+        int totalDecodable = 0, decodableSoFar = 1, previousTotal = 1;
         char[] singleLetters = message.toCharArray();
         for (int i = 0; i < message.length() - 1; i++) {
             int firstInDouble = singleLetters[i];
             int secondInDouble = singleLetters[i + 1];
+            totalDecodable = previousTotal;
             if ((firstInDouble == '1' && secondInDouble <= '9') || (firstInDouble == '2' && secondInDouble <= '6')) {
-                decodablePairs++;
-            }else{
-                undecodablePairs++;
+                totalDecodable += decodableSoFar;
             }
+            decodableSoFar = previousTotal;
+            previousTotal = totalDecodable;
         }
 
-        if (decodablePairs == 0) {
-            //single chars will be always decodable so 1
-            return 1;
-        }
+        return totalDecodable;
 
-        if(message.length()<4){
-            return 1 + decodablePairs;
-        }
-
-        return 1 + (decodablePairs) + (message.length() - WINDOW_SIZE - undecodablePairs);
     }
 
 }
