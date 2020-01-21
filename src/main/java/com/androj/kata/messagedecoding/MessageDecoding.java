@@ -16,20 +16,20 @@ public class MessageDecoding {
         if (message.length() < 2) {
             return 1;
         }
-        int totalDecodable = 0, decodableSoFar = 1, previousTotal = 1;
+        int totalDecodeable = 0, decodeableSoFar = 1, previousTotal = 1;
         char[] singleLetters = message.toCharArray();
         for (int i = 0; i < message.length() - 1; i++) {
-            int firstInDouble = singleLetters[i];
-            int secondInDouble = singleLetters[i + 1];
-            totalDecodable = previousTotal;
-            if ((firstInDouble == '1' && secondInDouble <= '9') || (firstInDouble == '2' && secondInDouble <= '6')) {
-                totalDecodable += decodableSoFar;
+            int firstInPair = singleLetters[i];
+            int secondInPair = singleLetters[i + 1];
+            totalDecodeable = previousTotal;
+            if ((firstInPair == '1') || (firstInPair == '2' && secondInPair <= '6')) {
+                totalDecodeable += decodeableSoFar;
             }
-            decodableSoFar = previousTotal;
-            previousTotal = totalDecodable;
+            decodeableSoFar = previousTotal;
+            previousTotal = totalDecodeable;
         }
 
-        return totalDecodable;
+        return totalDecodeable;
 
     }
 
