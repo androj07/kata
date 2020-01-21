@@ -16,12 +16,12 @@ public class MessageDecoding {
         if (message.length() < 2) {
             return 1;
         }
-        int totalDecodeable = 0, decodeableSoFar = 1, previousTotal = 1;
+        int totalDecodeable = 1, decodeableSoFar = 1, previousTotal = 1;
         char[] singleLetters = message.toCharArray();
         for (int i = 0; i < message.length() - 1; i++) {
             int firstInPair = singleLetters[i];
             int secondInPair = singleLetters[i + 1];
-            totalDecodeable = previousTotal;
+
             if ((firstInPair == '1') || (firstInPair == '2' && secondInPair <= '6')) {
                 totalDecodeable += decodeableSoFar;
             }
