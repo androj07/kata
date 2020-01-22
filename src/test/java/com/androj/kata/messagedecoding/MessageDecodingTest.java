@@ -20,5 +20,6 @@ public class MessageDecodingTest {
         assertThat(decoding.possibleDecodings("176"),equalTo(2));
         assertThat(decoding.possibleDecodings("1311"),equalTo(4));
         assertThat(decoding.possibleDecodings("1111"),equalTo(5));
+        assertThat(decoding.possibleDecodings("11111"),equalTo(8));
     }
 }
