@@ -2,6 +2,10 @@ package com.androj.kata.tree;
 
 import org.junit.Test;
 
+import javax.annotation.processing.Completion;
+
+import java.util.concurrent.CompletableFuture;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.*;
