@@ -1,8 +1,8 @@
-package com.androj.kata.deadlock;
+package com.androj.kata.multithreading.deadlock;
 
 import java.util.Random;
 
-public class DeadlockProblemFixMain {
+public class DeadlockProblemMain {
 
     public static void main(String[] args) {
         Intersection intersection = new Intersection();
@@ -56,9 +56,9 @@ public class DeadlockProblemFixMain {
         Object railB = new Object();
 
         public void passRailA() {
-            synchronized (railA) {
-                System.out.println(Thread.currentThread().getName()+" locked rail A to pass safely");
-                synchronized (railB) {
+            synchronized (railB) {
+                System.out.println(Thread.currentThread().getName()+" locked rail B to pass safely");
+                synchronized (railA) {
                     System.out.println(Thread.currentThread().getName()+" passing");
                     try {
                         Thread.sleep(1);
@@ -70,8 +70,6 @@ public class DeadlockProblemFixMain {
 
 
         public void passRailB() {
-            //Fix : changed the order of locking to be the same in both methods.
-            // If the threads will try to acquire locks in the same order then the deadlock will not happen
             synchronized (railA) {
                 System.out.println(Thread.currentThread().getName()+" locked rail A to pass safely");
                 synchronized (railB) {

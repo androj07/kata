@@ -1,6 +1,6 @@
-package com.androj.kata.datarace;
+package com.androj.kata.multithreading.datarace;
 
-public class DataRaceFix1Main {
+public class DataRaceFix2Main {
     public static void main(String[] args) {
 
         SharedData sharedData = new SharedData();
@@ -24,9 +24,9 @@ public class DataRaceFix1Main {
 
     public static class SharedData{
         private int x = 0;
-        private volatile int y = 0;
+        private int y = 0;
 
-        public void increment(){
+        public synchronized void increment(){
             x++;
             y++;
         }

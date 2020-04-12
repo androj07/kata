@@ -1,4 +1,4 @@
-package com.androj.kata.readwritelock;
+package com.androj.kata.multithreading.readwritelock;
 
 import java.util.ArrayList;
 import java.util.List;
