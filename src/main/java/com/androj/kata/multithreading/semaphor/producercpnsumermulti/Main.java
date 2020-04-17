@@ -16,14 +16,14 @@ public class Main {
         };
 
         List<Thread> producers = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 10; i++) {
             producers.add(new ProducerThread<>(producerConsumerMulti,messageSupplier));
         }
 
         producers.forEach(Thread::start);
 
         List<Thread> consumers = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i <5; i++) {
             consumers.add(new ConsumerThread<>(producerConsumerMulti,messageConsumer));
         }
 

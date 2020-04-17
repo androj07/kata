@@ -11,7 +11,6 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ProducerConsumerMulti<T> {
     private final Semaphore full = new Semaphore(0);
     private final Semaphore empty;
-    private T item = null;
     private Queue<T> queue = new ArrayDeque<>();
     private Lock lock = new ReentrantLock();
 
