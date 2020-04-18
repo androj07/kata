@@ -20,7 +20,7 @@ public class NonBlockingStack<T> implements StackWithMetrics<T> {
         StackNode<T> newHead = new StackNode<>(item);
         while (true) {
             StackNode<T> lastHead = head.get();
-            newHead.setNext(lastHead);
+            newHead.next = lastHead;
             if (head.compareAndSet(lastHead, newHead)) {
                 break;
             } else {
@@ -35,7 +35,7 @@ public class NonBlockingStack<T> implements StackWithMetrics<T> {
         StackNode<T> lastHead = head.get();
         StackNode<T> newHead;
         while (lastHead != null) {
-            newHead = lastHead.getNext();
+            newHead = lastHead.next;
             if (head.compareAndSet(lastHead, newHead)) {
                 break;
             } else {

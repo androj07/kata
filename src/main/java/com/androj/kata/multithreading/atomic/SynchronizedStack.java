@@ -16,7 +16,7 @@ public class SynchronizedStack<T> implements StackWithMetrics<T> {
     public void push(T item) {
         synchronized (this) {
             StackNode<T> current = new StackNode<>(item);
-            current.setNext(head);
+            current.next = head;
             head = current;
             operations++;
         }
@@ -30,7 +30,7 @@ public class SynchronizedStack<T> implements StackWithMetrics<T> {
                 return null;
             }
             StackNode<T> lastHead = head;
-            head = head.getNext();
+            head = head.next;
             return lastHead.getValue();
         }
     }
