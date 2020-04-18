@@ -1,15 +1,15 @@
 package com.androj.kata.multithreading.atomic;
 
 public class StackNode<T> {
-    private T value;
+    private final T value;
     private StackNode<T> next;
+
+    public StackNode(T value) {
+        this.value = value;
+    }
 
     public T getValue() {
         return value;
-    }
-
-    public void setValue(T value) {
-        this.value = value;
     }
 
     public StackNode<T> getNext() {

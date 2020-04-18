@@ -75,48 +75,4 @@ public class StacksBenchmark {
         }
 
     }
-
-    private class PushingThread extends Thread {
-        private final Stack<Integer> stack;
-        private final Random random = new Random();
-        private boolean keepGoing = true;
-
-        private PushingThread(Stack<Integer> stack) {
-            this.stack = stack;
-            this.setDaemon(true);
-        }
-
-        @Override
-        public void run() {
-            while (keepGoing) {
-                int next = random.nextInt();
-                this.stack.push(next);
-            }
-        }
-
-        public void terminate() {
-            this.keepGoing = false;
-        }
-    }
-
-    private class PoppingThread extends Thread {
-        private final Stack<Integer> stack;
-        private boolean keepGoing = true;
-
-        private PoppingThread(Stack<Integer> stack) {
-            this.stack = stack;
-            this.setDaemon(true);
-        }
-
-        @Override
-        public void run() {
-            while (keepGoing) {
-                this.stack.pop();
-            }
-        }
-
-        public void terminate() {
-            this.keepGoing = false;
-        }
-    }
 }
