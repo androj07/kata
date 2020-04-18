@@ -19,7 +19,7 @@ public class MainRepaint {
 
         int processors = Runtime.getRuntime().availableProcessors();
 
-        int chunkHeight = height / 5;
+        int chunkHeight = height / processors;
 
         List<Thread> threads = new ArrayList<>();
         int currentHeight = height;
