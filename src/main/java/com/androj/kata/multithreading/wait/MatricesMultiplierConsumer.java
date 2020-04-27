@@ -20,13 +20,13 @@ public class MatricesMultiplierConsumer extends Thread {
                 System.out.println("No more work to do : " + getName());
                 return;
             }
-            float[][] resultMatrix = multiplyMatrices(matrixPair);
+            float[][] resultMatrix = multiplyMatricesSequential(matrixPair);
             matrixFileWriter.write(resultMatrix);
             matrixFileWriter.flush();
         }
     }
 
-    private float[][] multiplyMatrices(MatrixPair matrixPair) {
+    private float[][] multiplyMatricesSequential(MatrixPair matrixPair) {
         float[][] matrixA = matrixPair.getMatrixA();
         float[][] matrixB = matrixPair.getMatrixB();
         float[][] result = new float[matrixA.length][matrixB[0].length];
@@ -40,4 +40,20 @@ public class MatricesMultiplierConsumer extends Thread {
         }
         return result;
     }
+
+    private float[][] multiplyMatricesParallel(MatrixPair matrixPair) {
+        float[][] matrixA = matrixPair.getMatrixA();
+        float[][] matrixB = matrixPair.getMatrixB();
+        float[][] result = new float[matrixA.length][matrixB[0].length];
+
+        for (int r = 0; r < matrixA.length; r++) {
+            for (int c = 0; c < matrixB[0].length; c++) {
+                for (int i = 0; i < matrixA.length; i++) {
+                    result[r][c] = matrixA[r][i] * matrixB[i][c];
+                }
+            }
+        }
+        return result;
+    }
+
 }
